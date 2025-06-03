@@ -4,13 +4,10 @@ from pathlib import Path
 from pandas import DataFrame, read_csv
 from typing import Optional
 
-double_parent = Path("../../../data/anonymize_Loan_Default_data.csv")
-print(double_parent.exists())
 
 BASE_DATADIR = Path("./data/")
 BASE_DATA_FILENAME = Path("Anonymize_Loan_Default_data.csv")
 BASE_FILEPATH = BASE_DATADIR / BASE_DATA_FILENAME
-print(BASE_FILEPATH)
 
 def extract_data_from_kaggle(directory: Optional[Path] = None) -> None:
 
