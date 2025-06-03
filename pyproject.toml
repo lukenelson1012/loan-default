@@ -5,10 +5,16 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "loan-default"
-dependencies = ["pandas>=2.2.3", "numpy>=2.2.6", "matplotlib>=3.10.3", "scikit-learn>=1.6.1"]
+dependencies = [
+    "kaggle",
+    "matplotlib",
+    "numpy"
+    "pandas",
+    "scikit-learn",
+    ]
 description = "Checks to see if user defaulted on loans"
-requires_python = ">= 3.13"
 dynamic = ["version"]
+requires_python = ">= 3.13"
 
 [project-urls]
 source = "https://github.com/lukenelson1012/loan-default"
