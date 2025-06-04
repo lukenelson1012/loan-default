@@ -6,6 +6,7 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "loan-default"
 dependencies = [
+    "chardet",
     "kaggle",
     "matplotlib",
     "numpy"
