@@ -2,7 +2,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 from sklearn.pipeline import Pipeline, make_pipeline
@@ -33,10 +32,11 @@ def pipeline(X_train, X_test, y_train, y_test):
         ('num', num_preprocessor, [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]),
     ])
 
+
     pipe = make_pipeline(preprocessor, LogisticRegression())
 
-    pipe.fit(X_train.values.reshape(-1, 18), y_train)
+    pipe.fit(X_train.values.reshape(-1, X_train.shape[1]), y_train)
 
-    print(f"Accuracy score: {accuracy_score(pipe.predict(X_test.values.reshape(-1, 18)), y_test):.2f}")
+    print(f"Accuracy score: {accuracy_score(pipe.predict(X_test.values.reshape(-1, X_train.shape[1])), y_test):.2f}")
 
     return pipe

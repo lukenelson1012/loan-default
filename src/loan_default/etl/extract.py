@@ -13,8 +13,8 @@ def extract_data_from_kaggle(directory: Optional[Path] = None) -> None:
 
     """
     Requires API key
-    (talk about Kaggle, instructions, etc.)
-
+    This function uses the Kaggle API to download the dataset onto your device
+    If you don't have an API key, you can generate one on your Kaggle profile before running the program.
     """
 
     if not directory:
@@ -36,11 +36,11 @@ def fix_data_issue(filepath) -> bool:
         if content is not None and content.startswith(','):
             new_content = content[1:]
         if new_content:
-            print("data issue fixed")
+            #print("data issue fixed")
             with open(filepath, 'w') as file:
                 file.write(new_content)
             return True
-        print("No data issue encountered.")
+        # print("No data issue encountered.")
         return False
         
     except FileNotFoundError:
@@ -54,20 +54,20 @@ def fix_data_issue(filepath) -> bool:
 def infer_encoding(filepath):
     with open(filepath, "rb") as file:
         res = chardet.detect(file.read())
-    print(f"encoding inferred: {res["encoding"]}")
+    # print(f"encoding inferred: {res["encoding"]}")
     return res
 
 def read_data(filepath: Optional[Path] = None) -> DataFrame:
-    print(filepath)
+    #print(filepath)
     if not filepath:
         filepath = BASE_FILEPATH
     if filepath.exists():
-        print(filepath.absolute())
+        # print(filepath.absolute())
         fix_data_issue(filepath)
         encoding = infer_encoding(filepath)["encoding"]
         return read_csv(filepath, encoding=encoding)
     else:
-        print(filepath.absolute().parent)
+        # print(filepath.absolute().parent)
         filepath.parent.mkdir(parents=True, exist_ok=True)
         extract_data_from_kaggle(filepath.parent)
         fix_data_issue(filepath)
